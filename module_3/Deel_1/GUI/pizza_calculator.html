@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+  <title>base</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Pizza Shop</h1>
+  <h5>Smalle Pizza: 6,50</h5>
+  <h5>Mediume Pizza: 9,30</h5>
+  <h5>Large Pizza: 11,10</h5>
+  <form id="form">
+    <p>
+      <label>Pizza small: </label>
+      <input type="text" name="input" id="small" min="0" >
+    </p>
+    <p>
+        <label>Pizza medium: </label>
+        <input type="text" name="input" id="medium" min="0">
+    </p>
+    <p>
+        <label>Pizza large: </label>
+        <input type="text" name="input" id="large" min="0">
+    </p>
+    
+    <input type="submit" id="submit_button" value="berekenen">
+  </form>
+  <div id="result">
+    <hr>
+    <h1>Result</h1>
+    <hr>
+    <p><label>Pizza small: </label><span id="nr_small"></span></p>
+    <p><label>Pizza medium: </label><span id="nr_medium"></span></p>
+    <p><label>Pizza large: </label><span id="nr_large"></span></p>
+    <hr>
+    <p><label>Tolate bdrag: </label><span id="total_buget"></span></p>
+  </div>
+
+  <script>
+    const PIZZA_SMAL = 6.50
+    const PIZZA_MEDIUM = 9.30
+    const PIZZA_LARGE = 11.10
+    function submit(event){
+        let pizza_smal = Number (small.value ||0);
+        let total_smal = pizza_smal * PIZZA_SMAL
+        let display_smal = `${PIZZA_SMAL} x ${pizza_smal} = ${total_smal.toFixed(2)}`
+        nr_small.textContent = display_smal
+
+
+        let pizza_medium = Number (medium.value ||0);
+        let total_medium = pizza_medium * PIZZA_MEDIUM
+        let display_medium = `${PIZZA_MEDIUM} x ${pizza_medium} = ${total_medium.toFixed(2)}`
+        nr_medium.textContent = display_medium
+
+
+        let pizza_large = Number (large.value ||0);
+        let total_large = pizza_large * PIZZA_LARGE
+        let display_large = `${PIZZA_LARGE} x ${pizza_large} = ${total_large.toFixed(2)}`
+        nr_large.textContent = display_large
+
+        let bon_total = total_smal + total_medium + total_large;
+        total_buget.textContent= bon_total.toFixed(2)
+    }
+    submit_button.addEventListener('click',submit);
+
+    // prevent document from default trying to really submit
+    function form_submit(event){
+      event.preventDefault();
+    }
+    form.addEventListener('submit',form_submit)
+
+  </script>
+</body>
+</html>

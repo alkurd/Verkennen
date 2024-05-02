@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+  <title>base</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Feestlunch</h1>
+  <form id="form">
+    <p>
+      <label>Stokbrood: </label>
+      <input type="text" name="input" id="nr_bagettes" min="0">
+    </p>
+    <p>
+        <label>Croissant: </label>
+        <input type="text" name="input" id="nr_croissant" min="0">
+      </p>
+      <p>
+        <label>Kortingen: </label>
+        <input type="text" name="input" id="nr_coupons" min="0">
+      </p>
+
+    <input type="submit" id="submit_button" value="berekenen">
+  </form>
+  <div id="result">
+    <hr>
+    <h1>Kassabon</h1>
+    <hr>
+    <p><label>Stokbroden: </label><span id="receipt_bagettes"></span></p>
+    <p><label>Croissant: </label><span id="receipt_croissant"></span></p>
+    <p><label>Kortingsbonnen: </label><span id="receipt_coupons"></span></p>
+    <hr>
+    <p><label>Te Betallen: </label><span id="receipt_total"></span></p>
+  </div>
+
+  <script>
+    const PRICE_BAGETTES = 1.92;
+    const PRICE_CROISSANT = 0.49;
+    const PRICE_COUPONS = 0.25
+
+    function calculateReceipt(event){
+        let amount_bagettes = Number(nr_bagettes.value || 0);
+        let total_bagettes = amount_bagettes * PRICE_BAGETTES;
+        let display_bagettes =` ${amount_bagettes} x ${PRICE_BAGETTES} = ${ total_bagettes} `
+        console.log(display_bagettes);
+        receipt_bagettes.textContent = display_bagettes;
+
+        let amount_croissant = Number(nr_croissant.value || 0);
+        let total_croissant = amount_croissant * PRICE_CROISSANT;
+        let display_croissant =` ${amount_croissant} x ${PRICE_CROISSANT} = ${ total_croissant} `
+        console.log(display_croissant);
+        receipt_croissant.textContent = display_croissant;
+
+        let amount_coupons = Number(nr_coupons.value || 0);
+        let total_coupons = amount_coupons * PRICE_COUPONS;
+        let display_coupons =` ${amount_coupons} x ${PRICE_COUPONS} = ${ total_coupons} `
+        console.log(display_coupons);
+        receipt_coupons.textContent = display_coupons;
+
+        let bon_total = total_bagettes + total_croissant - total_coupons;
+        let display_bon_total =`${bon_total.toFixed(2)} `
+        console.log(display_bon_total);
+        receipt_total.textContent = display_bon_total;
+
+    }
+
+
+    submit_button.addEventListener('click',calculateReceipt);
+
+    // prevent document from default trying to really submit
+    function form_submit(event){
+
+      event.preventDefault();
+    }
+    form.addEventListener('submit',form_submit)
+
+  </script>
+</body>
+</html>

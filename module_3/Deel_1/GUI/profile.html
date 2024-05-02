@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+  <title>New Profile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Profile form</h1>
+  <form id="form_profile">
+    <p>
+      <label>Name: </label>
+      <input type="text" name="input_name" id="input_name" >
+    </p>
+    <p>
+      <label>Address: </label>
+      <input type="text" name="input_address" id="input_address">
+    </p>
+    <p>
+      <label>Zipcode: </label>
+      <input type="text" name="input_zipcode" id="input_zipcode">
+    </p>
+    <p>
+      <label>City: </label>
+      <input type="text" name="input_city" id="input_city">
+    </p>
+    <p>
+      <label>E-mail: </label>
+      <input type="text" name="input_email" id= input_email>
+    </p>
+    <p>
+      <label>diploma: </label>
+      <select name="input_diploma" id="input_diploma">
+      <option value=""></option>
+      <option value="JA">JA</option>
+      <option value="Nee">Nee</option>
+    </select>
+    </p>
+    <p>
+      <label>XP: </label>
+      <input type="number" name="input_XP" id="input_XP"required min="0">
+    </p>
+    <p>
+      <label>gander: </label>
+      <select name="input_diploma" id="input_gander">
+        <option value=""></option>
+        <option value="man">man</option>
+        <option value="=vrouw">vrouw</option>
+        <option value="ander">anders</option>
+      </select> 
+    </p>
+
+    <input type="submit" id="submit_button" value="submit">
+    <input type="reset"  id="leegmaken" value="leegmaken">
+    
+  </form>
+  <div id="profile">
+    <h1>Profile</h1>
+    <p><label>Name: </label><span id="display_name"></span></p>
+    <p><label>Address: </label><span id="display_address"></span></p>
+    <p><label>Zipcode: </label><span id="display_zipcode"></span></p>
+    <p><label>City: </label><span id="display_city"></span></p>
+    <p><label>E-mail:</label><span id="display_email"></span></p>
+    <p><label>diploma:</label><span id="display_diploma"></span></p>
+    <p><label>XP:</label><span id="display_XP"></span></p>
+    <p><label>gander:</label><span id="display_gander"></span></p>
+    
+  </div>
+
+  <script>
+    function submit(event){
+
+      
+      // input_name.value= input_name.value.toUpperCase();
+      // if(input_name.value.length ==0 ) {
+      //   alert('Nee,nee, wel invullen he!!')
+      // }
+      // if (display_name.textContent = input_name.value)
+      // {
+      //   alert('name has changed since last submit')
+      // }
+      display_name.textContent = input_name.value;
+      display_address.textContent = input_address.value;
+      display_zipcode.textContent = input_zipcode.value;
+      display_city.textContent = input_city.value;
+      display_email.textContent = input_email.value;
+      display_diploma.textContent = input_diploma.value;
+      display_XP.textContent = input_XP.value;
+      display_gander.textContent = input_gander.value;
+      
+      
+    }
+    submit_button.addEventListener('click',submit);
+    
+
+    // prevent document from default trying to really submit
+    function form_submit(event){
+      event.preventDefault();
+    }
+    form_profile.addEventListener('submit',form_submit)
+
+    function alertChange(event){
+      alert('valeu changed');
+    }
+
+    // input_name.addEventListener('click',alertChange);
+  </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!-- haal de fouten uit de script -->
+<!doctype html>
+<html>
+<head>
+  <title>Price</title>
+</head>
+<body>
+  Aantal: <input type="text" id="amount" value="1"> <span>adviesprijs €1,23 </span><br>
+  Vriendenprijs: <input type="number" step="0.01" id="price" value="1.00"><br>
+
+  <button id="bereken">Bereken</button>
+  <p>Te betalen:</p>
+  <p id="resultaat"></p>
+</body>
+<script>
+/*
+  Onderstaande script moet ervoor zorgen dat als op de knop Bereken wordt geklikt de function berekening wordt aangeroepen. Deze function bepaalt eerst of er met een vriendenprijs of een adviesprijs moet worden gerekend. Het totaal te betalen bedrag wordt dan berekend als: het aantal (amount.value) x de gehanteerde prijs. Met Number() zet je een string om naar een getal. Met .toFixed(2) zet je een getal om naar een string met 2 decimalen achter de komma. Het p-element met id: resultaat moet het totaal te betalen bedrag.
+*/
+  const PRICE = 1.23; // is adviesprijs
+  function berekening(event){ 
+    let totaal = 0; 
+    let priceValue = document.getElementById('price').value; // regel bevat bug
+    if (!priceValue) { 
+      let newPrice = Number(priceValue); // regel bevat bug
+      priceValue = newPrice; // regel bevat 2 bugs
+    } 
+    let realPrice = PRICE; // bevat bug en heeft een logisch probleem
+    let total = realPrice * Number(document.getElementById('amount').value); 
+    resultaat.txtContent = total.toFixed(2); // regel bevat 2 bugs
+  }
+
+  bereken.addEventListener('click',berekening); // regel bevat bug
+</script>
+</html>
+
+
+<!-- haal de fouten uit de script
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Price</title>
+</head>
+<body>
+  Aantal: <input type="text" id="amount" value="1"> <span>adviesprijs €1,23 </span><br>
+  Vriendenprijs: <input type="number" step="0.01" id="price" value="1.00"><br>
+
+  <button id="bereken">Bereken</button>
+  <p>Te betalen:</p>
+  <p id="resultaat"></p>
+</body>
+<script>
+  /*
+    Onderstaande script moet ervoor zorgen dat als op de knop Bereken wordt geklikt de function berekening wordt aangeroepen. Deze function bepaalt eerst of er met een vriendenprijs of een adviesprijs moet worden gerekend. Het totaal te betalen bedrag wordt dan berekend als: het aantal (amount.value) x de gehanteerde prijs. Met Number() zet je een string om naar een getal. Met .toFixed(2) zet je een getal om naar een string met 2 decimalen achter de komma. Het p-element met id: resultaat moet het totaal te betalen bedrag.
+  */
+  const PRICE = 1.23; // is adviesprijs
+  function berekening(event){ 
+    let totaal = 0; 
+    let priceValue = price.value; // Fout: 'price' is niet gedefinieerd
+    if (!priceValue) { 
+      let newPrice = Number(priceValue); // Fout: 'price' is niet gedefinieerd
+      price == newPrice; // Fout: Gebruik toekenningsoperator '=' in plaats van '=='
+    } 
+    let realPrice = PRICE; // Fout: 'PRICE' is niet gedefinieerd
+    // Correctie: Zorg ervoor dat 'PRICE' boven de functie wordt gedeclareerd of verplaats deze naar de globale scope
+    let total = realPrice * Number(amount.value); 
+    resultaat.txtContent = total.toFixed(2); // Fout: 'resultaat' is niet gedefinieerd
+    // Correctie: Gebruik 'textContent' in plaats van 'txtContent'
+  }
+
+  bereken.addEventListener('click', berekening); // Fout: 'bereken' is niet gedefinieerd
+  // Correctie: Voeg een referentie toe aan het HTML-element met de id 'bereken'
+</script>
+</html> -->

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo</title>
+</head>
+<body>
+  Input: <input id="input"><br>
+
+  <button id="bereken">Bereken</button>
+
+  <p id="resultaat"></p>
+
+
+  <script>
+    function maal3ceil(Getal){
+      let product3 = Math.ceil (Getal * 3);
+      console.log(product3)
+      return product3;
+    }
+
+
+    function berekening(event){
+    input.value =input.value||"1";
+
+      let getalString = input.value;
+      let Getal = Number (getalString);
+      if (!isNaN(Getal)){
+        product=maal3ceil(Getal)
+      resultaat.innerText =`Het antwoord wordt: ${product}, dus!!`;
+      //f'antwoordt wordt{product}, dus!!  hoe het python zou zijn
+      }else{
+        resultaat.innerHTML = "<h1><span style = color:red>ongeldig invoer</span</h1>";
+      }
+    }
+  
+    bereken.addEventListener('click',berekening);
+  
+
+    input.title = "geef een getal ";
+    // input.value = 0;
+  </script>
+
+  
+</body>
+</html>

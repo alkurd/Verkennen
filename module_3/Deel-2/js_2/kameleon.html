@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <h1>Kameleon</h1>
+    <section id="container"></section>
+
+    <script>
+        texts = ['button', 'start', 'knop', 'press'];
+colors = ['#FF5733', '#33FF57', '#FF5733', '#5733FF'];
+
+for (i = 0; i < 10; i = i + 1) {
+    let button = document.createElement('button');
+
+    button.textIndex = 0
+    button.textContent = texts[button.textIndex];
+    button.style.backgroundColor = colors[button.textIndex];
+
+    let container = document.getElementById('container');
+    // console.dir(container);
+    container.appendChild(button);
+    button.addEventListener('click', click)
+}
+function click(event){
+    this.textIndex += 1;
+    if(this.textIndex >= texts.length)
+    {
+        this.textIndex = 0;
+    }
+    this.textContent = texts[this.textIndex];
+    
+    this.style.backgroundColor = colors[this.textIndex];
+    
+}
+    </script>
+</body>
+
+</html>

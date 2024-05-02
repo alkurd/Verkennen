@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+  <title>base</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Speel Hall Dag</h1>
+  <form id="form">
+    <p>
+      <label>Aantal spelers: </label>
+      <input type="text" name="input" id="players" min="0" >
+    </p>
+    <p>
+        <label>Tijd VIP: </label>
+        <input type="text" name="input" id="seat_VIP" min="0" >
+        <select id="time_selecter">
+          <option value=""></option>
+          <option value="Minuten">Minuten</option>
+          <option value="Uren">Uren</option>
+        </select>
+      
+      </p>
+      <p>
+        <label>Aantal VIP: </label>
+        <input type="text" name="input" id="VR_players" min="0">
+      </p>
+      
+        
+      
+
+    <input type="submit" id="submit_button" value="berekenen" min="0">
+  </form>
+  <div id="result">
+    <h1>Dag Prijs</h1>
+    <hr>
+    <p><label>Speler: </label><span id="nr_players"></span></p>
+    <p><label>Minuten VIP: </label><span id="time_VIP">  </span></p>
+    <p><label>Aantal VIP: </label><span id="nr_playersVR"></span></p>
+    <hr>
+    <p><label>Te Betallen: </label><span id="receipt_total"></span></p>
+    <hr>
+  </div>
+
+  <script>
+    const PRICE_PLAYERS = 12.45
+    const TIME_VIP = 5
+    const PRICE_VIP = 0.65
+    const HOURS = 60
+
+    function calculateVip(event){
+
+
+        let amount_players = Number(players.value || 0);
+        let total_players = amount_players * PRICE_PLAYERS;
+        let display_players =` ${amount_players} x ${PRICE_PLAYERS} = ${ total_players.toFixed(2)} `
+        console.log(display_players);
+        nr_players.textContent = display_players;
+
+        
+        
+        let time = Number(seat_VIP.value || 0);
+        let total_VIP_price = (time / TIME_VIP) * PRICE_VIP;
+        
+        if(time_selecter.value == "Uren"){
+          total_VIP_price = ((time * HOURS) / TIME_VIP) * PRICE_VIP;
+        }
+        let display_time = `${time}  x ${60} / ${TIME_VIP} x ${PRICE_VIP} = ${total_VIP_price.toFixed(2)}`
+        console.log(display_time);
+        time_VIP.textContent = display_time;
+
+
+        let amount_VRplayers= Number(VR_players.value || 0);
+        let total_players_VIP= amount_VRplayers * total_VIP_price;
+        let display_VR = `${amount_VRplayers} x ${total_VIP_price.toFixed(2)} = ${total_players_VIP.toFixed(2)}`
+        console.log(display_VR);
+        nr_playersVR.textContent = display_VR
+
+
+        let bon_total = total_players + total_players_VIP;
+        let display_bon_total =`${bon_total.toFixed(2)} `
+        console.log(display_bon_total);
+        receipt_total.textContent = display_bon_total;
+
+    }
+    submit_button.addEventListener('click',calculateVip);
+
+    // prevent document from default trying to really submit
+    function form_submit(event){
+      event.preventDefault();
+    }
+    form.addEventListener('submit',form_submit)
+
+  </script>
+</body>
+</html>

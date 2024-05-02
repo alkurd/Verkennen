@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <link rel = "stylesheet" href="">
+</head>
+
+<style>
+
+
+</style>
+<body>
+    <div class="animated-div"></div>
+    <button id="press-button">count</button>
+    <label>Start with...</label><input id="start-number" type="text">
+    <p id="show-count">starting count-down</p>
+
+    <script>
+        // let buttonCount = document.getElementById('button-count');
+        let buttonCount;
+        let pressButton = document.getElementById('press-button');
+        let showCount = document.getElementById('show-count');
+        let startInput = document.getElementById('start-number');
+
+        function start(event){
+            buttonCount = Number(startInput.value ||'10');
+            counter =setInterval(doCountDown, 1000);
+        }
+        pressButton.addEventListener('click', start)
+        function blastOff(event){
+            alert('booom!!!!')
+        }
+        function doCountDown(event) {
+            console.log('dit is een click van een element');
+            showCount.textContent = buttonCount;
+            // showCount.textContent = pressButton;
+            buttonCount -= 1;
+            if (buttonCount == 0){
+                showCount.textContent = 'space ship lifting off ....';
+                setTimeout(blastOff, 3000);
+                clearInterval(counter);
+                
+
+            }
+            
+        }
+        // buttonCount.addEventListener('click', doCountDown);
+
+        // countDownId =setInterval(doCountDown, 1000);
+        // console.log(countDownId);
+    </script>
+</body>
+
+</html>
